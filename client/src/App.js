@@ -1,24 +1,23 @@
-// client/src/App.js
+import React, { useEffect, useState } from "react";
 
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 
 function App() {
-  const [data, setData] = React.useState(null);
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+const [BackendData,SetBackendData] = useState([{}])
+
+useEffect(() => {
+  fetch('/api').then(
+    response => response.json()
+  ).then(
+    data => {
+      SetBackendData(data)
+    }
+  )
+}, [])
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+     {BackendData}
     </div>
   );
 }
