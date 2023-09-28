@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './compo/Navbar';
-import { harden } from '@agoric/harden';
 
 function App() {
   const [BackendData, SetBackendData] = useState([]);
@@ -11,7 +10,7 @@ function App() {
       response => response.json()
     ).then(
       data => {
-        SetBackendData(harden(data));
+        SetBackendData(data.users);
         console.log(data); // Log the value of BackendData to the console
         setIsLoading(false);
       }
@@ -21,18 +20,20 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <h1>Backend Data:</h1>
-      {isLoading? (
+      {isLoading ? (
         <p>Loading...</p>
       ) : (
         <ul>
-          {BackendData.map((user, index) => (
-            <li key={index}>{user.name}</li>
-          ))}
+          {Array.isArray(BackendData) ? (
+            BackendData.map((user, index) => (
+              <li key={index}>{user.name}</li>
+            ))
+          ) : (
+            <p>BackendData is not an array</p>
+          )}
         </ul>
       )}
     </div>
   );
 }
-
 export default App;
