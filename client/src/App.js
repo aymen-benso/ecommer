@@ -1,39 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './compo/Navbar';
+import Account from './compo/Account';
+import Home from './compo/Home';
+import About from './compo/About';
+import Contact from './compo/Contact';
+import Services from './compo/Services';
 
 function App() {
-  const [BackendData, SetBackendData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/api').then(
-      response => response.json()
-    ).then(
-      data => {
-        SetBackendData(data.users);
-        console.log(data); // Log the value of BackendData to the console
-        setIsLoading(false);
-      }
-    )
-  }, [])
-
   return (
-    <div className="App">
-      <Navbar />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul>
-          {Array.isArray(BackendData) ? (
-            BackendData.map((user, index) => (
-              <li key={index}>{user.name}</li>
-            ))
-          ) : (
-            <p>BackendData is not an array</p>
-          )}
-        </ul>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
+
 export default App;

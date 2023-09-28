@@ -1,28 +1,48 @@
 .navbar {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-  }
-  
-  .navbar-nav {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-item {
-    margin-right: 1rem;
-  }
-  
-  .nav-link {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .nav-link:hover {
-    color: #007bff;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.226);
+  border-radius: 15px;
+}
+
+.navbar-logo img {
+
+  object-fit: cover;
+}
+
+.navbar-user img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.navbar-search input {
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.205);
+  background-image: url("https://img.icons8.com/?size=50&id=59878&format=png");
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 20px;
+  padding-left: 40px;
+  margin-top: 15px;
+}
+
+.navbar-search input:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.226);
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
